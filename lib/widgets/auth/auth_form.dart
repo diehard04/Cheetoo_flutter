@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+
+class AuthForm extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _AuthFormState();
+  }
+}
+
+class _AuthFormState extends State<AuthForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        margin: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Form(
+                child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: 'Email Address',
+                  ),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'User Name'),
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                RaisedButton(
+                  child: Text('login'),
+                  onPressed: () {},
+                ),
+                FlatButton(
+                  child: Text('Create New Account'),
+                  onPressed: () {},
+                )
+              ],
+            )),
+          ),
+        ),
+      ),
+    );
+  }
+}

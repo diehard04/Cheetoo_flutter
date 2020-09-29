@@ -1,3 +1,4 @@
+import 'package:cheetoo/screens/auth_screen.dart';
 import 'package:cheetoo/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChatScreen(),
+      home: AuthScreen(),
     );
   }
 }
