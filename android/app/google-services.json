@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "881797968019",
+    "firebase_url": "https://cheeto-be516.firebaseio.com",
+    "project_id": "cheeto-be516",
+    "storage_bucket": "cheeto-be516.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881797968019:android:fb6752b9527f58fb075d66",
+        "android_client_info": {
+          "package_name": "com.diehard04.cheetoo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881797968019-sce4tvg971g51f00sic1apj7pq28eb32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA03uMXnFQImoJE7gP5eIJeSVCSb3mKhog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "881797968019-sce4tvg971g51f00sic1apj7pq28eb32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
