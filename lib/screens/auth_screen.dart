@@ -2,6 +2,7 @@ import 'package:cheetoo/widgets/auth/auth_form.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -27,8 +28,14 @@ class _AuthScreenState extends State<AuthScreen> {
         authResult = await _auth.createUserWithEmailAndPassword(
             email: email, password: pwd);
       }
+
+      await Firestore.instance.collection('users').document(authResult.user.uid).setData({
+        'userName': userName,
+        'email' : email
+      });
+
     } on PlatformException catch (err) {
-      var message = 'An error occured, please check credentials!';
+      var message = 'An error occurred, please check credentials!';
 
       if (err.message != null) {
         message = err.message;
