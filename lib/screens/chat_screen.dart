@@ -41,7 +41,7 @@ class ChatScreen extends StatelessWidget {
       body: Container(
         child: Column(
           children: <Widget>[
-            Expanded(child: Messages()),
+            Expanded(child: Messages(),),
             NewMessage(),
           ],
         ),
