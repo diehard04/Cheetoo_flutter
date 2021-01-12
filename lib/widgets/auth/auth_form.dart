@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cheetoo/widgets/auth/user_image_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -6,12 +8,12 @@ class AuthForm extends StatefulWidget {
 
   final bool isLoading;
   final void Function(
-    String email,
-    String pwd,
-    String userName,
-    bool isLogIn,
-    BuildContext ctx,
-  ) submitFn;
+      String email,
+      String pwd,
+      String userName,
+      bool isLogIn,
+      BuildContext ctx,
+      ) submitFn;
 
   @override
   State<StatefulWidget> createState() {
@@ -26,19 +28,32 @@ class _AuthFormState extends State<AuthForm> {
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
+  File _userImageFile;
+
+  void _pickedImage(File image) {
+    _userImageFile = image;
+  }
 
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus(); // hide key board
 
+    if (_userImageFile != null && !_isLogin) {
+      Scaffold.of(context).showSnackBar(
+          SnackBar(content: Text('Please pick an image'),
+          backgroundColor: Theme.of(context).errorColor,
+          )
+      );
+    return;
+    }
     if (isValid) {
-      _formKey.currentState.save();
-      // print(_userEmail);
-      // print(_userName);
-      // print(_userPassword);
-      // use those value to auth request ...
-      widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(),
-          _isLogin, context);
+    _formKey.currentState.save();
+    // print(_userEmail);
+    // print(_userName);
+    // print(_userPassword);
+    // use those value to auth request ...
+    widget.submitFn(_userEmail.trim(), _userPassword.trim(), _userName.trim(),
+    _isLogin, context);
     }
   }
 
@@ -55,7 +70,7 @@ class _AuthFormState extends State<AuthForm> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    if (!_isLogin) UserImagePicker(),
+                    if (!_isLogin) UserImagePicker(_pickedImage),
                     TextFormField(
                       key: ValueKey('email'),
                       validator: (value) {
@@ -116,7 +131,9 @@ class _AuthFormState extends State<AuthForm> {
                         child: Text(_isLogin
                             ? 'Create New Account'
                             : 'I already have an account'),
-                        textColor: Theme.of(context).primaryColor,
+                        textColor: Theme
+                            .of(context)
+                            .primaryColor,
                         onPressed: () {
                           setState(() {
                             // save the UI state
