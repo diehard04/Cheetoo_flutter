@@ -41,12 +41,22 @@ class _AuthScreenState extends State<AuthScreen> {
       }
 
       //....
-      FirebaseStorage.instance.ref()
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child('user_image')
+          .child(authResult.user.uid + '.jpg');
+
+      await ref.putFile(image, StorageMetadata()).onComplete;
+      final url = await ref.getDownloadURL();
 
       await Firestore.instance
           .collection('users')
           .document(authResult.user.uid)
-          .setData({'userName': userName, 'email': email});
+          .setData({
+        'userName': userName,
+        'email': email,
+        'image_url': url,
+          });
     } on PlatformException catch (err) {
       var message = 'An error occurred, please check credentials!';
       if (err.message != null) {
